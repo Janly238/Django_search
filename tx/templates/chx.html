@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/main.css">
+    <script type="text/javascript" src="/static/js/jquery-1.12.4.min.js"></script>
+    <style type="text/css">
+        h1 {color:red}
+    p {color:blue}
+        p
+  {
+  height:100px;
+  width:100px;
+
+  }
+        select {white-space: pre;}
+        option {white-space: pre;}
+
+div.form-group{line-height: 90%}
+div.form-group1 {line-height: 200%}
+div.form-group2 {line-height: 100%}
+
+p
+  {
+  margin:2cm 4cm 3cm 4cm;
+  }
+{#        div{#}
+{#  margin:2cm ;#}
+{#  }#}
+p
+  {
+  margin-left:2cm;
+  }
+input {  margin-left:6cm;
+}
+{#        div#}
+{#  {#}
+{#  position:absolute;#}
+{#  left:100px;#}
+{#  }#}
+
+    </style>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+        $(document).ready(function(){
+  $("#cx1").click(function(){
+    $("#test11").text($("form").serialize());
+  });
+});
+    </script>
+
+  <script type="text/javascript">
+      $(document).ready(function(){
+        $("#t").ubmit(function () {
+         //异步提交
+         $.ajax({
+             url:'/post2/',
+             type:'POST',
+             data:$(this).serialize(),
+             cache:false,
+             success:function (data) {
+                 console.log(data);
+                 alert("Text: " + $("#test").text());
+{#                 $("#test1").text("<b>Hello</b>, how are you?");#}
+
+             }
+
+         });
+    return false
+})})
+  </script>
+
+
+
+</head>
+
+{#<link rel="stylesheet" type="text/css" href="theme.css" />#}
+<body>
+{#    context={'title':'首页'}'isCart':'yes','glist':glist}#}
+{##}
+{#<p id="idpppp">{{ gj }}</p>#}
+{#<button type="button" onclick="document.getElementById('idpppp').style.fontSize='35px'">#}
+{#点击我！#}
+{#</button>#}
+
+
+<form action="/post2/" method="POST" id="cx">
+<div class="form-group">
+                <label for="id_sex">报告类型查询：</label>
+                <select name="sex1" id="id_sex">
+                    <option value ="请选择">请选择</option>
+                    {% for sex1 in bglx %}
+                    <option value ={{ sex1 }}>{{ sex1 }}</option>
+                    {% endfor %}
+{#                    未实现使用choices      待完善#}
+                  </select>
+
+                <label for="id_sex">建议查询：</label>
+                <select name="sex2" id="id_sex">
+                    <option value ="请选择">请选择</option>
+                    {% for sex2 in jy %}
+                    <option value ={{ sex2 }}>{{ sex2 }}</option>
+                    {% endfor %}
+{#                    未实现使用choices      待完善#}
+                  </select>
+                </div>
+
+<div class="form-group1">
+                <label for="id_sex">次级指标查询：</label>
+                <select name="sex3" id="id_sex">
+                    <option value ="请选择">请选择</option>
+{#                    {% for sex3 in cjzb %}#}
+{#                    <option value ={{ sex3 }}>{{ sex3|safe }}</option>#}
+{#                    {% endfor %}#}
+                    <option value ='Criterion 1.6'>Criterion 1.6</option>
+                    <option value ='Criterion 1.4'>Criterion 1.4</option>
+                    <option value ='Criterion 1.11'>Criterion 1.11</option>
+
+{#                    未实现使用choices      待完善#}
+                  </select>
+
+
+                <label for="id_sex">国家查询：</label>
+                <select name="sex4" id="id_sex">
+                    <option value ="请选择">请选择</option>
+                    {% for sex4 in gj %}
+                    <option value ={{sex4}}>{{sex4}}</option>
+                    {% endfor %}
+{#                    未实现使用choices   待完善#}
+                  </select>
+
+                <label for="id_sex">评级查询：</label>
+                <select name="sex5" id="id_sex">
+                    <option value ="请选择">请选择</option>
+                    {% for sex5 in pj %}
+                    <option value ={{sex5}}>{{sex5}}</option>
+                    {% endfor %}
+{#                    未实现使用choices   待完善#}
+                  </select>
+
+                <input id="cx1" type="submit" value="提交" >
+ </div>
+
+</form>
+
+
+<div id="test11" type="text">徐哥：</div>
+
+<div class="btn-group">
+	<button type="button" class="btn btn-default">按钮 1</button>
+	<button type="button" class="btn btn-default">按钮 2</button>
+	<div class="btn-group">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+			下拉<span class="caret"></span>
+		</button>
+		<ul class="dropdown-menu">
+			<li><a href="#">下拉链接 1</a></li>
+			<li><a href="#">下拉链接 2</a></li>
+		</ul>
+  </div>
+</div>
+
+<span id="show">333</span>
+
+
+<div>
+<ul id="id_sex1">{{ uname }}</ul>
+{#<ul id="id_sex2"></ul>#}
+{#<ul id="id_sex3"></ul>#}
+{#<ul id="id_sex4"></ul>#}
+</div>
+
+
+
+                //插入数据
+{#                 if(data['status']='success'){#}
+{#                     var htmlnr='<div>'+ data['status']+ '</div>'#}
+{#                     $("#test1").prepend(htmlnr);#}
+{#                 }#}
+{#                 else{#}
+{#                     console.log("false")#}
+{#                 }#}
+</body>
+</html>

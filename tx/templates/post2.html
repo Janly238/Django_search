@@ -1,0 +1,110 @@
+<html>
+<head>
+    <title>POST属性</title>
+
+	<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<style>
+    .fakeimg {
+        height: 200px;
+         background: #aaa;
+    }
+  </style>
+</head>
+<body>
+{#用户名：{{bglx}}<br>#}
+{#密码：{{upwd}}<br>#}
+{#性别：{{ugender}}<br>#}
+{#爱好：{{uhobby}}<br>#}
+{#<ul>#}
+{##}
+{#   {%for i in gj %}#}
+{#    <li> {%for i in bglx %}#}
+{#        <p>{{ i }}</p>#}
+{#         {%endfor%}#}
+{#        </li>#}
+{#    <li>{{ j }}</li>#}
+{#    {%endfor%}#}
+{##}
+{##}
+{##}
+{#</ul>#}
+
+
+<table class="table table-striped">
+	<caption>FATF</caption>
+	<thead>
+		<tr>
+			<th>报告类型</th>
+			<th>建议</th>
+			<th>次级指标</th>
+            <th>国家</th>
+			<th>评级</th>
+			<th>评估范围</th>
+            <th>评级内容</th>
+			<th>备注</th>
+		</tr>
+	</thead>
+	<tbody>
+
+
+             {%for i in tt%}
+                 <tr>
+			<td>{{ i.bglx }}</td>
+            <td>{{ i.jy }}</td>
+            <td>{{ i.cjzb }}</td>
+                 <td>{{ i.gj }}</td>
+                  <td>{{ i.pj }}</td>
+                  <td>{{ i.pgyw }}</td>
+                 <td>{{ i.pjnr }}</td>
+                 <td>{{ i.bzh }}</td>
+                    </tr>
+                 {% endfor %}
+
+
+
+
+
+{#     {%for i in jy%}#}
+{#		<tr>#}
+{##}
+{#			<td>{{ i }}</td>#}
+{#		</tr>#}
+{#                {%endfor%}#}
+{#     {%for i in cjzb%}#}
+{#		<tr>#}
+{##}
+{#			<td>{{ i }}</td>#}
+{#		</tr>#}
+{#                {%endfor%}#}
+{#     {%for i in gj%}#}
+{#		<tr>#}
+{##}
+{#			<td>{{ i }}</td>#}
+{#		</tr>#}
+{#                {%endfor%}#}
+{#     {%for i in pj%}#}
+{#		<tr>#}
+{##}
+{#			<td>{{ i }}</td>#}
+{#		</tr>#}
+{#                {%endfor%}#}
+{#         {%for i in pgyw%}#}
+{#		<tr>#}
+{##}
+{#			<td>{{  i}}</td>#}
+{#		</tr>#}
+{#                {%endfor%}#}
+{#         {%for i in pjnr%}#}
+{#		<tr>#}
+{#			<td>{{ i }}</td>#}
+{#		</tr>#}
+{#                {%endfor%}#}
+
+
+	</tbody>
+</table>
+
+</body>
+</html>

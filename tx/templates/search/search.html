@@ -1,0 +1,67 @@
+<html>
+<head>
+    <title>全文检索--结果页</title>
+    <style>
+        span.highlighted {
+            color: orange;
+        }
+        div.highlighted {
+            color: orange;
+        }
+        p.highlighted {
+            color: darkgrey;
+        }
+        a.size{size:12px}
+    </style>
+    {% load highlight %}
+     <title>POST属性</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<h1>搜索&nbsp;<b>{{query}}</b>&nbsp;结果如下：</h1>
+<ul>
+      <li>{{ text }} </li>
+{% if query %}
+ <div class="container">
+
+
+{%for item in page.object_list%}
+{#    {% highlight result.summary with query html_tag "div" css_class "highlight_me_please" %}  #}
+{##}
+{## 可以 max_length 限制最终{{ result.summary }} 被高亮处理后的长度#}
+{#{% highlight result.summary with query max_length 40 %}  #}
+        <li><span>报告类型：{{ item.object.bglx }}</span></li>
+
+        <li><span>建议：{{ item.object.jy }}</span></li>
+
+        <li><span>次级指标：{{ item.object.cjzb }}</span></li>
+
+        <li><span>国家：{{ item.object.gj }}</span></li>
+        <li><span>评级：{{ item.object.pj }}</span></li>
+        <li><span>备注：{{ item.object.bzh }}</span></li>
+
+
+    <li><span>评估原文：{% highlight item.object.pgyw with query %}
+</span></li>
+     <div class="tab-pane fade in active" id="home">
+        <p>评价内容：<span>{% highlight item.object.pjnr with query %}</span></p>
+    </div>
+{%empty%}
+    <li>啥也没找到</li>
+{%endfor%}
+{% endif %}
+</div>
+
+<hr>
+{%for pindex in page.paginator.page_range%}
+    {%if pindex == page.number%}
+        {{pindex}}&nbsp;&nbsp;
+    {%else%}
+        <a href="?q={{query}}&amp;page={{pindex}}">{{pindex}}</a>&nbsp;&nbsp;
+    {%endif%}
+{%endfor%}
+
+</body>
+</html>

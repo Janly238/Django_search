@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script src="/static/js/jquery-1.12.4.min.js">
+
+
+function getSceneId(scece_name, td) {
+    var post_data = {
+        "name": scece_name,
+    };
+
+    $.ajax({
+        url: {% url 'scene_update_url' %},
+        type: "POST",
+        data: post_data,
+        success: function (data) {
+            data = JSON.parse(data);
+            if (data["status"] == 1) {
+                setSceneTd(data["result"], scece_name, td);
+            } else {
+                alert(data["result"]);
+            }
+        }
+    });
+}
+</script>
+
+<form action="/select_art/" method="post">
+      {% csrf_token %}
+      <section class="mtb">
+       <select class="select">
+           <option value="类别" name="class">类别</option>
+           {% for art in art_list %}
+           <option value="{{ art }}">{{ art }}</option>
+           {% endfor %}
+       </select>
+       <input name="art_name" type="text" class="textbox textbox_225" placeholder="输入要查询的文章标题"/>
+       <input type="submit" value="查询" class="group_btn"/>
+      </section>
+      </form>
+
+</body>
+</html>
